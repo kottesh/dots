@@ -1,15 +1,14 @@
-<center><h1>~/.dots</h1></center>
+<h1 align="center">~/.dots</h1>
 
-<h3>Config files are still WIP.</h3>
+<b>Config files are still WIP...</b>
 
-Currently the system is running EndeavourOS with linux-zen kernel.<br>
-<b><u>NOTE:</u></b> Configs are specially tuned for 15.6" display. 
+<p>Currently the system is running EndeavourOS with linux-zen kernel.<br>
+<b>NOTE: </b> Configs are specially tuned for 15.6" display.</p>
 
-<h2>Current Setup</h2>
+<h3>Current Setup</h3>
 <img src="https://github.com/shreekottes/dots/assets/67730727/7ee85a41-4a2a-4157-97b9-08014a047c0f">
 
-<h2>Programs</h2>
-
+<h3>Programs</h3>
 
 |      **Tools**      |                          **Programs**                         |
 |:-------------------:|:-------------------------------------------------------------:|
