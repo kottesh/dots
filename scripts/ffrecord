@@ -9,7 +9,7 @@ then
   killall ffmpeg
   notify-send 'Stopped Recording!' --icon=dialog-information
 else 
-  dir=$HOME/vids/recs
+  dir=$HOME/Videos/recs
   current=$(date +%F_%H-%M-%S)
   mkdir -p "$dir"
 

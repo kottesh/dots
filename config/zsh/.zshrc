@@ -103,4 +103,4 @@ source $ZSH/oh-my-zsh.sh
 alias dragon="dragon-drop"
 
 
-#source $HOME/.zprofile
+source $HOME/.config/zsh/.zprofile
