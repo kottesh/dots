@@ -1,0 +1,14 @@
+######################################################
+############    Zathura Config File    ############### 
+######################################################
+
+
+set selection-clipboard clipboard
+
+# To set odd pages on left and even pages on the right
+set first-page-column 1:2
+
+# Open document in "best-fit" mode
+set adjust-open "best-fit"
+
+
