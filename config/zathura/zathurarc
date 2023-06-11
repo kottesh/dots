@@ -10,5 +10,3 @@ set first-page-column 1:2
 
 # Open document in "best-fit" mode
 set adjust-open "best-fit"
-
-
