@@ -58,6 +58,6 @@ xsetroot -cursor_name left_ptr &
 clipmenud &
 
 #enabling num lock on login
-#numlockx &
+numlockx &
 
 xrdb -merge ~/.Xresources

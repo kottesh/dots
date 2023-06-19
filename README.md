@@ -1,4 +1,4 @@
-<h1 align="center">~/.dots</h1>
+##
 
 <b>Config files are still WIP...</b>
 
