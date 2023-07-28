@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/usr/bin/env sh
 
 c() { bspc config "$@" &  }
 r() { bspc rule -a "$@" & }
@@ -7,39 +7,49 @@ pgrep -x sxhkd > /dev/null || sxhkd &
 
 bspc monitor -d I II III IV V VI VII VIII IX X
 
-c border_width         2 
-c window_gap           8 
+#################################################################
+# BSPWM Configuration
+#################################################################
 
-c split_ratio          0.52
-c borderless_monocle   true
-c gapless_monocle      true
-c focus_follows_pointer true
+c window_gap                20 
+c border_width         	    2 
 
-r Gimp desktop='^8' state=floating follow=on
-r mplayer2 state=floating
-r Yad state=floating
-r Kupfer.py focus=on
-r Screenkey manage=off
-r Pavucontrol state=floating
-r Protonvpn state=floating
+#----------------
+#LAYOUTS
+c split_ratio               0.50
 
-r Nitrogen state=floating
-r Galculator state=floating
+#MONOCLE LAYOUT (FULLSCREEN)
+c borderless_monocle   	    true  
+c gapless_monocle           false 
+c single_monocle	    false 
+
+#-----------------
+c focus_follows_pointer     true
 
 # Border
-c focused_border_color        "#6c71c4"
-c normal_border_color         "#073642"
-c active_border_color         "#073642"
+c focused_border_color      "#6c71c4"
+c normal_border_color       "#073642"
+c active_border_color       "#073642"
 
-# Autostart
-#
-# Set display from arandr saved script
-sh ~/.screenlayout/monitor.sh &
+#################################################################
+# Window Rules 
+#################################################################
 
-# Bar
+r Pavucontrol state=floating
+r Screenkey state=floating center=on
+r Protonvpn state=floating center=on
+r Nitrogen state=floating center=on
+r Galculator state=floating
+r Yad state=floating
+
+#################################################################
+# Autostarting 
+#################################################################
+
+# Polybar 
 ~/.config/polybar/launch.sh &
 
-# Notifications
+# Dunst 
 /usr/bin/dunst &
 
 # Polkit
@@ -52,12 +62,12 @@ nitrogen --restore &
 dex -a -s /etc/xdg/autostart/:~/.config/autostart/  &
 
 # Picom
-picom -b --experimental-backends &
+picom -b --experimental-backend &
 
 # Network Applet
 nm-applet --indicator &
 
-# Cursor
+# Fix cursor
 xsetroot -cursor_name left_ptr &
 
 # Low battery notifier
