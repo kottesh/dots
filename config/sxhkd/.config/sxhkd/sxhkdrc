@@ -221,3 +221,7 @@ XF86AudioPause
 #ffrecord
 alt + r
 	$HOME/.scripts/ffrecord
+
+#x11-emoji-picker
+super + v
+	emoji-picker &

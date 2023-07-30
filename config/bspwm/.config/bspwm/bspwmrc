@@ -20,7 +20,7 @@ c split_ratio               0.50
 
 #MONOCLE LAYOUT (FULLSCREEN)
 c borderless_monocle   	    true  
-c gapless_monocle           false 
+c gapless_monocle           true 
 c single_monocle	    false 
 
 #-----------------
@@ -41,6 +41,8 @@ r Protonvpn state=floating center=on
 r Nitrogen state=floating center=on
 r Galculator state=floating
 r Yad state=floating
+r File-roller state=floating manage=on
+r firefox:Places:Library center=on state=floating
 
 #################################################################
 # Autostarting 
