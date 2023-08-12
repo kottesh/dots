@@ -1,87 +1,115 @@
-#!/usr/bin/env sh
-
-c() { bspc config "$@" &  }
-r() { bspc rule -a "$@" & }
+#!/usr/bin/env bash 
 
 pgrep -x sxhkd > /dev/null || sxhkd &
 
-bspc monitor -d I II III IV V VI VII VIII IX X
+bspc rule -r "*"
+
+config() { bspc config "$@" ; }
+rule() { bspc rule -a "$@" ; }
+
+
+#----------------------
+# Configure monitors
+
+#bspc monitor -d I II III IV V VI VII VIII IX X
+
+export MONITOR=$(xrandr -q | grep primary | cut -d' ' -f1)
+export MONITORS=( $(xrandr -q | grep ' connected' | cut -d' ' -f1) )
+MONITOR=${MONITOR:-${MONITORS[0]}}
+
+# Only have workspaces for primary monitor
+for monitor in $MONITORS; do
+  bspc monitor $monitor -d 0
+done
+bspc monitor $MONITOR -d {0,1,2,3,4,5,6,7,8,9}
+
+config remove_disabled_monitors  true
+config remove_unplugged_monitors true
+
+
+
 
 #################################################################
 # BSPWM Configuration
 #################################################################
 
-c window_gap                20 
-c border_width         	    2 
+config window_gap                14 
+config border_width         	 2
 
 #----------------
-#LAYOUTS
-c split_ratio               0.50
+# Layouts
+config split_ratio               0.50
 
-#MONOCLE LAYOUT (FULLSCREEN)
-c borderless_monocle   	    true  
-c gapless_monocle           true 
-c single_monocle	    false 
+# Monocle Layout (FULLSCREEN)
+config borderless_monocle   	 true
+config gapless_monocle           true
+config single_monocle	    	 false
 
 #-----------------
-c focus_follows_pointer     true
+config focus_follows_pointer     true
+config pointer_follows_focus     false
 
-# Border
-c focused_border_color      "#6c71c4"
-c normal_border_color       "#073642"
-c active_border_color       "#073642"
+config normal_border_color       "#32334E"
+config focused_border_color      "#B6D0FD"
+config active_border_color       "#96A5A9"
+config presel_feedback_color     "#7A7C8C"
+
+#-----------------
+# Padding
+config top_monocle_padding 	 0
+config bottom_monocle_padding    0
+config right_monocle_padding	 0 
+config left_monocle_padding 	 0
+
 
 #################################################################
 # Window Rules 
 #################################################################
 
-r Pavucontrol state=floating
-r Screenkey state=floating center=on
-r Protonvpn state=floating center=on
-r Nitrogen state=floating center=on
-r Galculator state=floating
-r Yad state=floating
-r File-roller state=floating manage=on
-r firefox:Places:Library center=on state=floating
+rule Pavucontrol state=floating
+rule Screenkey state=floating center=on manage=on
+rule Protonvpn state=floating center=on
+rule Nitrogen state=floating center=on
+rule Gpick state=floating center=on manage=on
+rule Galculator state=floating focus=on center=on rectangle=400x540+0+0
+rule Yad state=floating
+rule File-roller state=floating manage=on
+rule firefox:Places:Library state=floating center=on
+
+#----------------
+# Fix cursor
+
+xsetroot -cursor_name left_ptr &
+
 
 #################################################################
 # Autostarting 
 #################################################################
 
-# Polybar 
-~/.config/polybar/launch.sh &
+#Raise polybar
+$HOME/.config/polybar/launch.sh &
 
-# Dunst 
-/usr/bin/dunst &
+$HOME/.config/bspwm/scripts/low_bat_notifier.sh &
 
-# Polkit
+#Initiate policy-kit 
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
-# Wallpaper
-nitrogen --restore &
-
-# Dex
 dex -a -s /etc/xdg/autostart/:~/.config/autostart/  &
 
-# Picom
+nitrogen --restore &
+
 picom -b --experimental-backend &
 
-# Network Applet
 nm-applet --indicator &
 
-# Fix cursor
-xsetroot -cursor_name left_ptr &
+dunst &
 
-# Low battery notifier
-~/.config/bspwm/scripts/low_bat_notifier.sh
-
-#Clipmenu
 clipmenud &
 
-#enabling num lock on login
-numlockx &
+#Turn 'ON' numlock during session login
+numlockx on &
 
-#start clipmenu daemon
-clipmenud &
+#Handle device mounts
+udiskie &
 
 xrdb -merge ~/.Xresources
