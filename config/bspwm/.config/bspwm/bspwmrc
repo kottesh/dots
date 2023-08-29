@@ -27,8 +27,6 @@ config remove_disabled_monitors  true
 config remove_unplugged_monitors true
 
 
-
-
 #################################################################
 # BSPWM Configuration
 #################################################################
@@ -86,30 +84,34 @@ xsetroot -cursor_name left_ptr &
 # Autostarting 
 #################################################################
 
+ensure() {
+    pidof $1 > /dev/null || $@
+}
+
 #Raise polybar
 $HOME/.config/polybar/launch.sh &
 
 $HOME/.config/bspwm/scripts/low_bat_notifier.sh &
 
 #Initiate policy-kit 
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+ensure /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 dex -a -s /etc/xdg/autostart/:~/.config/autostart/  &
 
 nitrogen --restore &
 
-picom -b --experimental-backend &
+ensure picom -b --experimental-backend &
 
-nm-applet --indicator &
+ensure nm-applet --indicator &
 
-dunst &
+ensure dunst &
 
-clipmenud &
+ensure clipmenud &
 
 #Turn 'ON' numlock during session login
-numlockx on &
+ensure numlockx on &
 
 #Handle device mounts
-udiskie &
+ensure udiskie &
 
-xrdb -merge ~/.Xresources
+xrdb -merge "${HOME}/.Xresources"
