@@ -1,11 +1,28 @@
 #!/usr/bin/env bash 
 
+
+# ____ ____ ____ ____ ____ 
+#||b |||s |||p |||w |||m ||
+#||__|||__|||__|||__|||__||
+#|/__\|/__\|/__\|/__\|/__\|
+#
+
+
 pgrep -x sxhkd > /dev/null || sxhkd &
 
 bspc rule -r "*"
 
 config() { bspc config "$@" ; }
 rule() { bspc rule -a "$@" ; }
+_() { pgrep -x "$1" > /dev/null || "$@" & }
+
+
+#----------------
+# X tweaks 
+
+xset r rate 400 30;
+xsetroot -cursor_name left_ptr &
+numlockx on;
 
 
 #----------------------
@@ -19,7 +36,7 @@ MONITOR=${MONITOR:-${MONITORS[0]}}
 
 # Only have workspaces for primary monitor
 for monitor in $MONITORS; do
-  bspc monitor $monitor -d 0
+  bspc monitor $monitor -d {0,1,2,3,4,5,6}
 done
 bspc monitor $MONITOR -d {0,1,2,3,4,5,6,7,8,9}
 
@@ -54,7 +71,7 @@ config presel_feedback_color     "#7A7C8C"
 
 #-----------------
 # Padding
-config top_monocle_padding 	 0
+config top_monocle_padding		 0
 config bottom_monocle_padding    0
 config right_monocle_padding	 0 
 config left_monocle_padding 	 0
@@ -74,44 +91,34 @@ rule Yad state=floating
 rule File-roller state=floating manage=on
 rule firefox:Places:Library state=floating center=on
 
-#----------------
-# Fix cursor
-
-xsetroot -cursor_name left_ptr &
-
 
 #################################################################
 # Autostarting 
 #################################################################
 
-ensure() {
-    pidof $1 > /dev/null || $@
-}
-
-#Raise polybar
+# Raise polybar
 $HOME/.config/polybar/launch.sh &
 
 $HOME/.config/bspwm/scripts/low_bat_notifier.sh &
-
-#Initiate policy-kit 
-ensure /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 dex -a -s /etc/xdg/autostart/:~/.config/autostart/  &
 
 nitrogen --restore &
 
-ensure picom -b --experimental-backend &
+# Initiate policy-kit 
+_ /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
-ensure nm-applet --indicator &
+_ picom -b --experimental-backend
 
-ensure dunst &
+_ nm-applet --indicator
 
-ensure clipmenud &
+_ dunst
 
-#Turn 'ON' numlock during session login
-ensure numlockx on &
+_ clipmenud
 
-#Handle device mounts
-ensure udiskie &
+# Handle device mounts
+_ udiskie
 
 xrdb -merge "${HOME}/.Xresources"
+
+notify-send "All set"
