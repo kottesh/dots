@@ -90,7 +90,9 @@ notify-send "bspc rules set"
 #----------------
 # X tweaks 
 
-xset r rate 400 30 &
+if [ $(xset -q | grep "auto repeat delay" | awk '{print $4}') -ne 400 ]; then
+    xset r rate 400 30 &
+fi
 xsetroot -cursor_name left_ptr &
 numlockx on &
 
