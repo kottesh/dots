@@ -8,21 +8,13 @@
 #
 
 
-pgrep -x sxhkd > /dev/null || sxhkd &
+pgrep -x sxhkd > /dev/null || /usr/bin/sxhkd &
 
 bspc rule -r "*"
 
 config() { bspc config "$@" ; }
 rule() { bspc rule -a "$@" ; }
 _() { pgrep -x "$1" > /dev/null || "$@" & }
-
-
-#----------------
-# X tweaks 
-
-xset r rate 400 30;
-xsetroot -cursor_name left_ptr &
-numlockx on;
 
 
 #----------------------
@@ -36,7 +28,7 @@ MONITOR=${MONITOR:-${MONITORS[0]}}
 
 # Only have workspaces for primary monitor
 for monitor in $MONITORS; do
-  bspc monitor $monitor -d {0,1,2,3,4,5,6}
+  bspc monitor $monitor -d {0,1,2,3,4,5,6} 
 done
 bspc monitor $MONITOR -d {0,1,2,3,4,5,6,7,8,9}
 
@@ -44,8 +36,8 @@ config remove_disabled_monitors  true
 config remove_unplugged_monitors true
 
 
-#################################################################
-# BSPWM Configuration
+################################################################# 
+# BSPWM Configuration 
 #################################################################
 
 config window_gap                14 
@@ -76,6 +68,8 @@ config bottom_monocle_padding    0
 config right_monocle_padding	 0 
 config left_monocle_padding 	 0
 
+notify-send "bspc configs set"
+
 
 #################################################################
 # Window Rules 
@@ -90,6 +84,15 @@ rule Galculator state=floating focus=on center=on rectangle=400x540+0+0
 rule Yad state=floating
 rule File-roller state=floating manage=on
 rule firefox:Places:Library state=floating center=on
+
+notify-send "bspc rules set"
+
+#----------------
+# X tweaks 
+
+xset r rate 400 30 &
+xsetroot -cursor_name left_ptr &
+numlockx on &
 
 
 #################################################################
@@ -108,7 +111,7 @@ nitrogen --restore &
 # Initiate policy-kit 
 _ /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
-_ picom -b --experimental-backend
+_ picom -b --experimental-backends
 
 _ nm-applet --indicator
 
@@ -119,6 +122,8 @@ _ clipmenud
 # Handle device mounts
 _ udiskie
 
+notify-send "bg apps started"
+
 xrdb -merge "${HOME}/.Xresources"
 
-notify-send "All set"
+notify-send "all done"
