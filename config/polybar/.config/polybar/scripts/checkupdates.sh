@@ -11,4 +11,3 @@ else
 fi
 
 echo "%{T1}%{T-} %{T2}$count%{T-}"
-

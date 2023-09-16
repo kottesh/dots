@@ -1,46 +1,80 @@
-#
-# wm independent hotkeys
-#
+##############################################################
+#######                WM INDEP KEYS                   #######
+##############################################################
 
-# terminal emulator
+# make sxhkd reload its configuration files
+super + Escape
+	pkill -USR1 -x sxhkd; \
+	notify-send "SXHKD" "config reloaded."
+
+# kitty
+super + shift + Return
+	kitty
+
+# scratchpad center
 super + Return
-	kitty	
+	tdrop -am -w 1892 -h 984 -x 14 -y 48 -n 1 kitty
+# scratchpad right
 super + apostrophe
-        tdrop -am -w 1898 -h 428 -x 8 -y 37 -n 1 kitty
+	tdrop -am -w 939 -h 984 -x 967 -y 48 -n 1 kitty
+
+# scratchpad left
 super + semicolon
-        tdrop -am -w 1898 -h 428 -x 8 -y 635 -n 1 kitty
-super + alt + Return
-	tdrop -am -w 1487 -h 731 -x416 -y 177 -n 1 kitty
+	tdrop -am -w 939 -h 984 -x 14 -y 48 -n 1 kitty
 
-# program launcher
-super + @space 
-	rofi -modi drun -show drun -line-padding 4 \
-                -columns 2 -padding 50 -hide-scrollbar -terminal xfce4-terminal \
-                -show-icons -drun-icon-theme "Qogir-dark" -font "Droid Sans Regular 10"
+# scratchpad bottom
+super + slash
+	tdrop -am -w 1892 -h 485 -x 14 -y 547 -n 2 kitty
 
-# show open window
-super + ctrl + d
-	rofi -modi drun -show window -line-padding 4 \
-                -columns 2 -padding 50 -hide-scrollbar -terminal xfce4-terminal \
-                -show-icons -drun-icon-theme "Qogir-dark" -font "Droid Sans Regular 10"
+# scratchpad top
+super + backslash
+	tdrop -am -w 1892 -h 485 -x 14 -y 48 -n 2 kitty
 
-# show ssh sesssions
-super + shift + d
-	rofi -modi drun -show ssh -line-padding 4 \
-                -columns 2 -padding 50 -hide-scrollbar -terminal xfce4-terminal \
-                -show-icons -drun-icon-theme "Qogir-dark" -font "Droid Sans Regular 10"
+# app launcher (dmenu)
+super + @space
+	dmenu_run
 
-# power-menu 
+# power-menu
 super + shift + e
      ~/.config/rofi/powermenu.sh
 
-# make sxhkd reload its configuration files:
-super + Escape
-	pkill -USR1 -x sxhkd; notify-send "SXHKD" "Config Reloaded"
+# screenshot entire screen
+Print
+  scrot ~/$(xdg-user-dir PICTURES)/screenshot-$(date +%F_%T).png
 
-#
-# bspwm hotkeys
-#
+# screenshot options
+super + Print
+  ~/.config/bspwm/scripts/screenshot.sh
+
+# take ss with bg shadow
+super + shift + Print
+	$HOME/.scripts/shot
+
+# shortcuts
+super + w
+	brave
+
+super + n
+	thunar
+
+super + F1
+	~/.config/bspwm/scripts/keybindings_rofi.sh
+
+alt + l
+	~/.config/bspwm/scripts/i3lock-fancy/i3lock-fancy.sh
+
+#ffrecord
+alt + r
+	$HOME/.scripts/ffrecord
+
+#x11-emoji-picker
+super + v
+	emoji-picker &
+
+
+############################################################
+#######                 BSPWM Hotkeys                #######
+############################################################
 
 # quit/restart bspwm
 super + alt + {q,r}
@@ -62,9 +96,8 @@ super + y
 super + g
 	bspc node -s biggest.window
 
-#
+#---------------------------------------------------------------------
 # state/flags
-#
 
 # set the window state
 super + {t,shift + t,s,f}
@@ -74,14 +107,12 @@ super + {t,shift + t,s,f}
 super + ctrl + {m,x,y,z}
 	bspc node -g {marked,locked,sticky,private}
 
-#
+#---------------------------------------------------------------------
 # focus/swap
-#
 
 # focus the node in the given direction
 super + {_,shift + }{h,j,k,l}
 	bspc node -{f,s} {west,south,north,east}
-
 # focus the node for the given path jump
 super + {p,b,comma,period}
 	bspc node -f @{parent,brother,first,second}
@@ -108,9 +139,8 @@ super + {o,i}
 super + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} '^{1-9,10}'
 
-#
+#---------------------------------------------------------------------
 # preselect
-#
 
 # preselect the direction
 super + ctrl + {h,j,k,l}
@@ -128,9 +158,8 @@ super + ctrl + space
 super + ctrl + shift + space
 	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
-#
+#---------------------------------------------------------------------
 # move/resize
-#
 
 # expand a window by moving one of its side outward
 super + alt + {h,j,k,l}
@@ -143,85 +172,64 @@ super + alt + shift + {h,j,k,l}
 # move a floating window
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
-#
-# Special hotkeys
-#
 
-# Multimedia keys
-XF86AudioRaiseVolume
-  amixer -q set Master 5%+ unmute
+# Move current window to a pre-selected space
+super + shift + m
+    bspc node -n last.!automatic
 
-# Still multimedia
-XF86AudioLowerVolume
-  amixer -q set Master 5%- unmute
+# Rotate tree
+super + shift + {d,a}
+    bspc node @/ -C {forward,backward}
 
-# still
-XF86AudioMute
-  amixer -D pulse sset Master toggle-mute
-  
-# amixer -q set Master toggle
-# Simple amixer command seems to have problems unmuting device
+######################################################################
 
-# Brightness up
-XF86MonBrightnessUp
-#  xbacklight -inc 5
-   brillo -q -A 5
 
-# And brightness down
-XF86MonBrightnessDown
-#  xbacklight -dec 5
-   brillo -q -U 5
+##############################################################
+#######                 XF86 Keysyms                   #######
+##############################################################
 
-# Screenshot
-Print
-  scrot ~/$(xdg-user-dir PICTURES)/Screenshot-$(date +%F_%T).png
+#-------------------------------------------------------------
+# MultiMedia Controls
 
-super + Print
-  ~/.config/bspwm/scripts/screenshot.sh
-
-super + shift + Print
-	$HOME/.scripts/shot
-
-# Shortcuts
-super + w 
-  vivaldi-stable 
-
-super + n 
-  thunar  
-
-super + F1
-  ~/.config/bspwm/scripts/keybindings_rofi.sh
-
-alt + l
-	~/.config/bspwm/scripts/i3lock-fancy/i3lock-fancy.sh
-
-#MultiMedia Controls
-
-# music controls
-super + shift + {Left , Right}
-    playerctl { prev , next} &
-
-# XF86AudioNext
-XF86AudioNext
-    playerctl next &
-
-# XF86AudioPrev
 XF86AudioPrev
-    playerctl previous &
+	playerctl previous &
 
-# XF86AudioPlay
+XF86AudioNext
+	playerctl next &
+
 XF86AudioPlay
     playerctl play-pause &
 
-# XF86AudioPause
 XF86AudioPause
-    playerctl play-pause &
+	playerctl play-pause &
 
+XF86AudioStop
+	playerctl stop &
 
-#ffrecord
-alt + r
-	$HOME/.scripts/ffrecord
+XF86AudioRaiseVolume
+  amixer -q set Master 5%+ unmute
 
-#x11-emoji-picker
-super + v
-	emoji-picker &
+XF86AudioLowerVolume
+  amixer -q set Master 5%- unmute
+
+XF86AudioMute
+  amixer -D pulse set Master toggle-mute
+
+# amixer -q set Master toggle
+# Simple amixer command seems to have problems unmuting device
+
+#-------------------------------------------------------------
+
+XF86Calculator
+	galculator
+
+XF86Explorer
+	thunar
+
+#-------------------------------------------------------------
+
+XF86MonBrightnessUp
+   brillo -q -A 5
+
+XF86MonBrightnessDown
+   brillo -q -U 5
