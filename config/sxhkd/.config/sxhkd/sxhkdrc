@@ -57,11 +57,11 @@ super + w
 super + n
 	thunar
 
-super + F1
+alt + l
 	~/.config/bspwm/scripts/keybindings_rofi.sh
 
-alt + l
-	~/.config/bspwm/scripts/i3lock-fancy/i3lock-fancy.sh
+super + F1
+    physlock 
 
 #ffrecord
 alt + r
@@ -70,6 +70,10 @@ alt + r
 #x11-emoji-picker
 super + v
 	emoji-picker &
+
+# polybar toggle
+super + alt + t
+    ~/.scripts/pbtoggle    
 
 
 ############################################################

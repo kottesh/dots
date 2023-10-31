@@ -41,7 +41,7 @@ config remove_unplugged_monitors true
 #################################################################
 
 config window_gap                14 
-config border_width         	 2
+config border_width         	 2 
 
 #----------------
 # Layouts
@@ -75,15 +75,17 @@ notify-send "bspc configs set"
 # Window Rules 
 #################################################################
 
-rule Pavucontrol state=floating
+rule Pavucontrol state=floating center=on
 rule Screenkey state=floating center=on manage=on
 rule Protonvpn state=floating center=on
 rule Nitrogen state=floating center=on
 rule Gpick state=floating center=on manage=on
-rule Galculator state=floating focus=on center=on rectangle=400x540+0+0
+rule gnome-calculator state=floating focus=on center=on
 rule Yad state=floating
 rule File-roller state=floating manage=on
 rule firefox:Places:Library state=floating center=on
+rule discord focus=off desktop=^3
+rule Zathura state=tiled
 
 notify-send "bspc rules set"
 
@@ -91,6 +93,7 @@ notify-send "bspc rules set"
 # X tweaks 
 
 if [ $(xset -q | grep "auto repeat delay" | awk '{print $4}') -ne 400 ]; then
+    sleep 0.5
     xset r rate 400 30 &
 fi
 xsetroot -cursor_name left_ptr &

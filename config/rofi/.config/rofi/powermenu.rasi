@@ -4,31 +4,31 @@
  *******************************************************/
 
 configuration {
-    font:                           "Sourcecode Pro Regular 10";
-    show-icons:                     false;
-    icon-theme: 		    "Arc-X-D";
-    scroll-method:                  0;
-    disable-history:                false;
-    sidebar-mode: 		    false;
+    font:                  "Sourcecode Pro Regular 10";
+    show-icons:            false;
+    icon-theme: 		   "Arc-X-D";
+    scroll-method:         0;
+    disable-history:       false;
+    sidebar-mode: 		   false;
 }
 
 @import "~/.config/rofi/arc_dark_transparent_colors.rasi"
 
 window {
-    background-color:               @background;
-    border:                         0;
-    padding:                        10;
-    transparency:                   "real";
-    width:                          180px;
-    location:                       northwest;
-y-offset:                       30;
-/*x-offset:	                    850;*/
-    transparency:                   "real";
+    background-color:      @background;
+    border:                0;
+    padding:               10;
+    transparency:          "real";
+    width:                 360px;
+    location:              center;
+	y-offset:              30;
+	/*x-offset:	           850;*/
+    transparency:          "real";
 }
 listview {
-    lines:                          6;
-    columns:                        1;
-    scrollbar:			false;
+    lines:                 6;
+    columns:               1;
+    scrollbar:			   false;
 }
 element {
     border:  0;

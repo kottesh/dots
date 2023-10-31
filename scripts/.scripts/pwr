@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+function power {
+    #mw -> microwatts
+
+    mw=$(cat /sys/class/power_supply/BAT0/power_now)
+    echo -ne "$(echo "scale=2; $mw/1000000" | bc) watts"
+}
+
+power

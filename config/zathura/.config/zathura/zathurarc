@@ -1,12 +1,21 @@
-######################################################
-############    Zathura Config File    ############### 
-######################################################
+set default-bg   "#282c34"
+set inputbar-bg  "#282c34"
+set statusbar-bg "#282c34"
 
+set default-fg   "#d5d8df"
+set inputbar-fg  "#61afef"
+set statusbar-fg "#d5d8df"
 
-set selection-clipboard clipboard
+set highlight-color "#d19a66"
+set completion-bg   "#98c379"
 
-# To set odd pages on left and even pages on the right
-set first-page-column 1:2
+set font "operator Mono 10"
+set adjust-open best-fit
+set advance-pages-per-row true
+set page-padding 5
 
-# Open document in "best-fit" mode
-set adjust-open "best-fit"
+map <F1> set "pages-per-row 1"
+map <F2> set "pages-per-row 2"
+map b toggle_statusbar
+map i toggle_index
+map R reload

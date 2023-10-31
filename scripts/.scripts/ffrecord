@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 # record - record an area of the screen
 # deps ffmpeg slop

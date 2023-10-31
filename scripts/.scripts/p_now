@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-
-microwatts=$(cat /sys/class/power_supply/BAT0/power_now)
-echo -en "$(echo "scale=2; $microwatts/1000000" | bc) watts"

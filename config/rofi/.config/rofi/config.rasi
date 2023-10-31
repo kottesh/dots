@@ -8,9 +8,9 @@ configuration {
     show-icons:				true;
     icon-theme:				"Arc-X-D";
     display-drun:			"Apps";
-    drun-display-format:		"{name}";
+    drun-display-format:	"{name}";
     scroll-method:			0;
-    disable-history:			false;
+    disable-history:		false;
     sidebar-mode:			false;
 }
 
@@ -22,8 +22,8 @@ window {
     padding:          30;
 }
 listview {
-    lines:                          10;
-    columns:                        3;
+    lines:            10;
+    columns:          3;
 }
 mainbox {
     border:  0;
