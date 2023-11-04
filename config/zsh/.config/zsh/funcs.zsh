@@ -75,3 +75,7 @@ function touchs {
     chmod u+x "$1";
     nvim "$1";
 }
+
+function oxo {
+    curl -F "file=@$1" https://0x0.st | xsel -i -b
+}

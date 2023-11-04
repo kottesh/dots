@@ -41,7 +41,7 @@ config remove_unplugged_monitors true
 #################################################################
 
 config window_gap                14 
-config border_width         	 2 
+config border_width         	  1 
 
 #----------------
 # Layouts

@@ -17,7 +17,7 @@ alias v="nvim"
 #-----------------------
 # Navigations
 
-alias dots="cd $HOME/.dotfiles"
+alias dots="cd $HOME/.dots"
 
 
 #-----------------------
