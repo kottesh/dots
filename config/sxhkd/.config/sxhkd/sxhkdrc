@@ -4,8 +4,7 @@
 
 # make sxhkd reload its configuration files
 super + Escape
-	pkill -USR1 -x sxhkd; \
-	notify-send "SXHKD" "config reloaded."
+	pkill -USR1 -x sxhkd && notify-send "SXHKD" "config reloaded."
 
 # kitty
 super + shift + Return
@@ -13,7 +12,8 @@ super + shift + Return
 
 # scratchpad center
 super + Return
-	tdrop -am -w 1892 -h 984 -x 14 -y 48 -n 1 kitty
+	tdrop -am -w 1620 -h 820 -x 143 -y 76 -n 1 kitty
+	#tdrop -am -w 1892 -h 984 -x 14 -y 48 -n 1 kitty
 # scratchpad right
 super + apostrophe
 	tdrop -am -w 939 -h 984 -x 967 -y 48 -n 1 kitty
@@ -52,7 +52,7 @@ super + shift + Print
 
 # shortcuts
 super + w
-	brave
+    thorium-browser	
 
 super + n
 	thunar
@@ -68,8 +68,8 @@ alt + r
 	$HOME/.scripts/ffrecord
 
 #x11-emoji-picker
-super + v
-	emoji-picker &
+#super + v
+#	emoji-picker &
 
 # polybar toggle
 super + alt + t

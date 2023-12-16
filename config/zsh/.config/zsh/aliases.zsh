@@ -12,6 +12,9 @@ alias -s md="grip -b"
 # Apps
 
 alias v="nvim"
+alias vpnc="protonvpn-cli c"
+alias vpnd="protonvpn-cli d"
+alias vpns="protonvpn-cli s"
 
 
 #-----------------------
