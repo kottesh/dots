@@ -1,4 +1,5 @@
 config/zsh/.config/zsh/.zsh_history
 config/zsh/.config/zsh/.zsh_plugins.zsh
 config/zsh/.config/zsh/.antidote/
+config/zsh/.config/zsh/.zcomp*
 config/touchegg/.config/touchegg/.touchegg:0.lock
