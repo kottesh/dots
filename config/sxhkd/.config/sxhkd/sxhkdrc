@@ -52,7 +52,7 @@ super + shift + Print
 
 # shortcuts
 super + w
-    thorium-browser	
+	firefox 
 
 super + n
 	thunar
