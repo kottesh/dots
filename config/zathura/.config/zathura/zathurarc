@@ -7,7 +7,7 @@ set font "Input Mono 10"
 set selection-clipboard "clipboard"
 set incremental-search "true"
 set pages-per-row 1
-set page-padding 32 
+set page-padding 16
 
 set scroll-step 60
 set zoom-step 32

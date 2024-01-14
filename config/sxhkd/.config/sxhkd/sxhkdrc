@@ -52,7 +52,7 @@ super + shift + Print
 
 # shortcuts
 super + w
-	firefox 
+	thorium-browser	
 
 super + n
 	thunar
@@ -70,6 +70,10 @@ alt + r
 #x11-emoji-picker
 #super + v
 #	emoji-picker &
+
+#clipmenu
+super + v
+	clipmenu &
 
 # polybar toggle
 super + alt + t

@@ -16,6 +16,11 @@ alias vpnc="protonvpn-cli c"
 alias vpnd="protonvpn-cli d"
 alias vpns="protonvpn-cli s"
 
+# docker
+alias doccs="docker container inspect --format '{{.State.Status}}'"
+alias doci="docker image"
+alias docc="docker container"
+
 
 #-----------------------
 # Navigations

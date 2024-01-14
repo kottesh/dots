@@ -41,6 +41,7 @@ config remove_unplugged_monitors true
 
 config window_gap                14 
 config border_width         	  2 
+config ignore_ewmh_focus		 false 
 
 #----------------
 # Layouts

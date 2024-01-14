@@ -28,6 +28,7 @@ export HISTFILE="$HOME/.config/zsh/.zsh_history"
 
 source $HOME/.config/zsh/aliases.zsh
 source $HOME/.config/zsh/funcs.zsh
+source $HOME/.config/zsh/.zprofile
 
 PROMPT="%F{cyan}%f%F{cyan}%~%f%F{green}%f"$'\n'"%F{blue} %f "
 
