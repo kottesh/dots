@@ -57,8 +57,8 @@ super + w
 super + n
 	thunar
 
-alt + l
-	~/.config/bspwm/scripts/keybindings_rofi.sh
+#alt + l
+#	~/.config/bspwm/scripts/keybindings_rofi.sh
 
 super + F1
     physlock 

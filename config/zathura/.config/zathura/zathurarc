@@ -5,7 +5,7 @@
 set adjust-open "best-fit"
 set font "Input Mono 10"
 set selection-clipboard "clipboard"
-set incremental-search "true"
+set incremental-search "false"
 set pages-per-row 1
 set page-padding 16
 

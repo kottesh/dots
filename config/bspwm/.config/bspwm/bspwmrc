@@ -39,7 +39,7 @@ config remove_unplugged_monitors true
 # BSPWM Configuration 
 #################################################################
 
-config window_gap                14 
+config window_gap                12
 config border_width         	  2 
 config ignore_ewmh_focus		 false 
 
