@@ -1,80 +1,69 @@
 #!/usr/bin/env bash 
 
-
 # ____ ____ ____ ____ ____ 
 #||b |||s |||p |||w |||m ||
 #||__|||__|||__|||__|||__||
 #|/__\|/__\|/__\|/__\|/__\|
 #
 
-
-pgrep -x sxhkd > /dev/null || /usr/bin/sxhkd &
-
-bspc rule -r "*"
-
 config() { bspc config "$@" ; }
 rule() { bspc rule -a "$@" ; }
-_() { pgrep -x "$1" > /dev/null || "$@" & }
+run() { pgrep -x "$1" > /dev/null || "$@" & }
 
+pgrep -x sxhkd > /dev/null || /usr/bin/sxhkd &
+bspc rule -r "*"
 
-#----------------------
+#--------------------------------------------
 # Configure monitors
 
-#bspc monitor -d I II III IV V VI VII VIII IX X
-
-export MONITOR=$(xrandr -q | grep primary | cut -d' ' -f1)
-export MONITORS=( $(xrandr -q | grep ' connected' | cut -d' ' -f1) )
+MONITOR=$(xrandr -q | grep primary | cut -d ' ' -f1)
+MONITORS=$(xrandr -q | grep ' connected' | cut -d ' ' -f1)
 MONITOR=${MONITOR:-${MONITORS[0]}}
 
 # Only have workspaces for primary monitor
 for monitor in $MONITORS; do
-  bspc monitor $monitor -d {0,1,2,3,4,5,6} 
+  bspc monitor "$monitor" -d {0,1,2,3,4,5,6} 
 done
-bspc monitor $MONITOR -d {0,1,2,3,4,5,6,7,8,9}
+bspc monitor "$MONITOR" -d {0,1,2,3,4,5,6,7}
 
 config remove_disabled_monitors  true
 config remove_unplugged_monitors true
 
-################################################################# 
-# BSPWM Configuration 
-#################################################################
+#--------------------------------------------
+# Window configs
 
 config window_gap                12
-config border_width         	  2 
-config ignore_ewmh_focus		 false 
+config border_width              2 
+config ignore_ewmh_focus         false 
 
 #----------------
 # Layouts
 config split_ratio               0.50
 
 # Monocle Layout (FULLSCREEN)
-config borderless_monocle   	 true
+config borderless_monocle        true
 config gapless_monocle           true
-config single_monocle	    	 false
+config single_monocle            false
 
-#-----------------
 config focus_follows_pointer     true
 config pointer_follows_focus     false
 
-config normal_border_color       "#32334E"
-config focused_border_color      "#B6D0FD"
-#config active_border_color       "#96A5A9"
+config normal_border_color       "#0F0F0F"
+config focused_border_color      "#555555"
 config active_border_color       "#3C4044"
 config presel_feedback_color     "#7A7C8C"
 
-#-----------------
 # Padding
-config top_monocle_padding		 0
+config top_monocle_padding       0
 config bottom_monocle_padding    0
-config right_monocle_padding	 0 
-config left_monocle_padding 	 0
+config right_monocle_padding     0 
+config left_monocle_padding      0
 
-notify-send "bspc configs set"
+notify-send "Configs set"
 
 
-#################################################################
-# Window Rules 
-#################################################################
+#--------------------------------------------
+# Rules
 
 rule Pavucontrol state=floating center=on
 rule Screenkey state=floating center=on manage=on
@@ -87,49 +76,33 @@ rule File-roller state=floating manage=on
 rule firefox:Places:Library state=floating center=on
 rule discord focus=off desktop=^3
 rule Zathura state=tiled
+rule smile state=floating manage=on
 
-notify-send "bspc rules set"
+notify-send "Rules set"
 
-#----------------
+#--------------------------------------------
 # X tweaks 
 
-if [ $(xset -q | grep "auto repeat delay" | awk '{print $4}') -ne 400 ]; then
-    sleep 0.5
-    xset r rate 400 30 &
-fi
 xsetroot -cursor_name left_ptr &
 numlockx on &
 
-
-#################################################################
+#--------------------------------------------
 # Autostarting 
-#################################################################
 
-# Raise polybar
-$HOME/.config/polybar/launch.sh &
-
-$HOME/.config/bspwm/scripts/low_bat_notifier.sh &
-
+~/.config/polybar/launch.sh & # Raise polybar
+~/.scripts/lowbattery &
+~/.fehbg &
 dex -a -s /etc/xdg/autostart/:~/.config/autostart/  &
+run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 # Initiate policy-kit 
+run picom -b --experimental-backends
+run nm-applet --indicator
+run dunst
+run clipmenud
+run udiskie # Handle device mounts
 
-nitrogen --restore &
-
-# Initiate policy-kit 
-_ /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-
-_ picom -b --experimental-backends
-
-_ nm-applet --indicator
-
-_ dunst
-
-_ clipmenud
-
-# Handle device mounts
-_ udiskie
-
-notify-send "bg apps started"
+notify-send "BG Apps started"
 
 xrdb -merge "${HOME}/.Xresources"
 
-notify-send "all done"
+notify-send "WM Started!"
+

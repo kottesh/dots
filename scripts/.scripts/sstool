@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+#
+# sstool - take a screenshot
+# (c) Shree Kottes
+#
+
+option=$(echo -e "screen\nwindow\narea" | rofi -dmenu -font "Input Mono 12")
+case $option in
+    window | area)
+        coords=$(slop)
+        if [ $? -ne 0 ]
+        then
+            notify-send "Selection Cancelled!"
+            exit 1
+        fi
+        maim -g $coords -u ~/Pictures/Screenshots/$(date +"%Y%m%d-%H%M%S").png
+    ;;
+    screen)
+        maim ~/Pictures/Screenshots/$(date +"%Y%m%d-%H%M%S").png
+    ;;
+    *) ;;
+esac
+
+if [ $? -eq 0 ]
+then
+    notify-send "Screenshot Captured."
+fi
+

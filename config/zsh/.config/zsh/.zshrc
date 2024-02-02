@@ -1,38 +1,64 @@
-# Set the name of the static .zsh plugins file antidote will generate.
-zsh_plugins=${ZDOTDIR:-~}/.zsh_plugins.zsh
+#<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<|| ZIM ||<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-# Ensure you have a .zsh_plugins.txt file where you can add plugins.
-[[ -f ${zsh_plugins:r}.txt ]] || touch ${zsh_plugins:r}.txt
+export ZIM_HOME=${XDG_CONFIG_HOME}/zim
 
-# Lazy-load antidote.
-fpath+=(${ZDOTDIR:-~}/.antidote)
-autoload -Uz $fpath[-1]/antidote
-
-# Generate static file in a subshell when .zsh_plugins.txt is updated.
-if [[ ! $zsh_plugins -nt ${zsh_plugins:r}.txt ]]; then
-  (antidote bundle <${zsh_plugins:r}.txt >|$zsh_plugins)
+# Download zimfw plugin manager if missing.
+if [[ ! -e ${ZIM_HOME}/zimfw.zsh ]]; then
+  mkdir -p ${ZIM_HOME} && wget -nv -O ${ZIM_HOME}/zimfw.zsh \
+      https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
 fi
 
+# Install missing modules, and update ${ZIM_HOME}/init.zsh if missing or outdated.
+if [[ ! ${ZIM_HOME}/init.zsh -nt ${ZDOTDIR:-${HOME}}/.zimrc ]]; then
+  source ${ZIM_HOME}/zimfw.zsh init -q
+fi
 
-# The following lines were added by compinstall
-zstyle :compinstall filename '/home/kottes/.config/zsh/.zshrc'
+# Initialize modules.
+source ${ZIM_HOME}/init.zsh
 
-autoload -Uz compinit
-compinit
-# End of lines added by compinstall
+#<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<ccccccccc<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-# Source your static plugins file.
-source $zsh_plugins
 
-export HISTFILE="$HOME/.config/zsh/.zsh_history"
 
-source $HOME/.config/zsh/aliases.zsh
-source $HOME/.config/zsh/funcs.zsh
-source $HOME/.config/zsh/.zprofile
+export HISTFILE=${HOME}/.config/zsh/.zhistory
+# Number of commands loaded into memory
+export HISTSIZE=10000
+# Number of commands stored in zhistory
+export SAVEHIST=10000
+setopt HIST_IGNORE_ALL_DUPS # Don't store duplicates in zhistory
+setopt HIST_FIND_NO_DUPS # Don't find duplicate when searching
+setopt INC_APPEND_HISTORY
 
-PROMPT="%F{cyan}%f%F{cyan}%~%f%F{green}%f"$'\n'"%F{blue} %f "
+source ${HOME}/.config/zsh/extra/_alias.zsh
+source ${HOME}/.config/zsh/extra/_funcs.zsh
+source ${HOME}/.config/zsh/extra/_keybinds.zsh
+source ${HOME}/.config/zsh/.zprofile
 
-# git right side prompt
+#-----------------
+# fzf-tab
+# ----------------
+
+# disable sort when completing `git checkout`
+zstyle ':completion:*:git-checkout:*' sort false
+# set descriptions format to enable group support
+zstyle ':completion:*:descriptions' format '[%d]'
+# set list-colors to enable filename colorizing
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+# preview directory's content with exa when completing cd
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
+# switch group using `,` and `.`
+zstyle ':fzf-tab:*' switch-group ',' '.'
+
+#-----------------
+# prompts 
+#-----------------
+
+# PS1
+
+PROMPT="%F{cyan}%f%F{cyan}%~%f%F{green}%f"$'\n'"%F{blue} %f "
+
+# RPROMPT
+
 autoload -Uz vcs_info
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
@@ -40,3 +66,4 @@ setopt prompt_subst
 RPROMPT=\$vcs_info_msg_0_
 zstyle ':vcs_info:git:*' formats '%F{yellow}(%b)%r%f'
 zstyle ':vcs_info:*' enable git
+

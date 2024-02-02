@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+#
+# wmrd - window manager reload
+# (c) Shree Kottes
+#
+
+set -eu
+
+usage() { 
+    cat << HELP 
+USAGE: $0 -r -x
+   -r: reloading bspwm
+   -x: kill and start sxhkd
+
+PS: This is a helper script for my polybar config...
+HELP
+}   
+
+if [ $# -eq 0 ]; then
+    usage
+fi
+
+while getopts ":rx" args; do
+    case "${args}" in
+        r)
+            bspc wm -r
+            ;;
+        x)
+            killall sxhkd
+            sxhkd & disown
+            notify-send "SXHKD Reloaded."
+            ;;
+        *)
+            usage
+            ;;
+    esac
+done
+shift $((OPTIND-1))
+

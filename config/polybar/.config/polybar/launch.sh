@@ -8,8 +8,9 @@ launch() {
         sleep 1;
     done
 
-    polybar -qr top -c "${HOME}/.config/polybar/config.ini" &
-    polybar -qr bottom -c "${HOME}/.config/polybar/config.ini" &
+#   polybar -qr top -c "${HOME}/.config/polybar/config.ini" &
+#   polybar -qr bottom -c "${HOME}/.config/polybar/config.ini" &
+    polybar -qr main -c "${HOME}/.config/polybar/config.ini" &
 }
 
 launch

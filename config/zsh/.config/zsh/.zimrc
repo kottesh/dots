@@ -1,0 +1,15 @@
+zmodule zsh-users/zsh-completions --fpath src
+zmodule completion
+zmodule zsh-users/zsh-autosuggestions
+zmodule zsh-users/zsh-syntax-highlighting
+zmodule zsh-users/zsh-history-substring-search
+
+zmodule Aloxaf/fzf-tab
+
+# zim modules 
+zmodule pacman
+zmodule utility 
+zmodule termtitle
+zmodule input 
+zmodule environment
+

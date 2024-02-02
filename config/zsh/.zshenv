@@ -21,5 +21,3 @@ export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=lcd -Dswing.aatext=true"
 #export _JAVA_OPTIONS='-Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
 
 export MANPAGER="nvim +Man!"
-
-. "$HOME/.cargo/env"

@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+#
+# pwr - power (shows power consumption in watts)
 
 function power {
     #mw -> microwatts
