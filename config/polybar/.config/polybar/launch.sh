@@ -10,7 +10,7 @@ launch() {
 
 #   polybar -qr top -c "${HOME}/.config/polybar/config.ini" &
 #   polybar -qr bottom -c "${HOME}/.config/polybar/config.ini" &
-    polybar -qr main -c "${HOME}/.config/polybar/config.ini" &
+    polybar -q -r main -c "${HOME}/.config/polybar/config.ini" &
 }
 
 launch

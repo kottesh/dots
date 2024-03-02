@@ -101,8 +101,5 @@ run clipmenud
 run udiskie # Handle device mounts
 
 notify-send "BG Apps started"
-
-xrdb -merge "${HOME}/.Xresources"
-
 notify-send "WM Started!"
 

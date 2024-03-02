@@ -4,7 +4,7 @@
 
 # make sxhkd reload its configuration files
 super + Escape
-	pkill -USR1 -x sxhkd && notify-send "SXHKD" "config reloaded."
+	pkill -USR1 -x sxhkd; notify-send "SXHKD" "Reloaded config."
 
 # kitty
 super + shift + Return
@@ -16,60 +16,49 @@ super + Return
 	#tdrop -am -w 1892 -h 984 -x 14 -y 48 -n 1 kitty
 # scratchpad right
 super + apostrophe
-	tdrop -am -w 939 -h 984 -x 967 -y 48 -n 1 kitty
+	tdrop -am -w 942 -h 1022 -x 966 -y 12 -n 1 kitty
 
 # scratchpad left
 super + semicolon
-	tdrop -am -w 939 -h 984 -x 14 -y 48 -n 1 kitty
+	tdrop -am -w 942 -h 1022 -x 12 -y 12 -n 1 kitty
 
 # scratchpad bottom
 super + slash
-	tdrop -am -w 1892 -h 485 -x 14 -y 547 -n 2 kitty
+	tdrop -am -w 1530 -h 535 -x 184 -y 499 -n 2 kitty
 
 # scratchpad top
 super + backslash
-	tdrop -am -w 1892 -h 485 -x 14 -y 48 -n 2 kitty
+	tdrop -am -w 1530 -h 535 -x 184 -y 19 -n 2 kitty
 
 # app launcher (dmenu)
 super + @space
-	dmenu_run
+	dmenu_run -l 4 -b
 
 # power-menu
 super + shift + e
      ~/.config/rofi/powermenu.sh
 
-# screenshot entire screen
-Print
-  scrot ~/$(xdg-user-dir PICTURES)/screenshot-$(date +%F_%T).png
-
-# screenshot options
 super + Print
-  ~/.config/bspwm/scripts/screenshot.sh
+  ~/.scripts/sstool
 
-# take ss with bg shadow
 super + shift + Print
-	$HOME/.scripts/shot
+	$HOME/.scripts/scryy
 
 # shortcuts
 super + w
-	thorium-browser	
+	 firefox
 
 super + n
 	thunar
 
-#alt + l
-#	~/.config/bspwm/scripts/keybindings_rofi.sh
-
 super + F1
-    physlock 
+    betterlockscreen -l dim
 
-#ffrecord
 alt + r
-	$HOME/.scripts/ffrecord
+	$HOME/.scripts/record
 
-#x11-emoji-picker
-#super + v
-#	emoji-picker &
+super + e 
+	 smile &
 
 #clipmenu
 super + v
@@ -77,7 +66,7 @@ super + v
 
 # polybar toggle
 super + alt + t
-    ~/.scripts/pbtoggle    
+    ~/.scripts/pbtoggle
 
 
 ############################################################

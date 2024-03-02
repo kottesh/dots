@@ -21,6 +21,8 @@ alias doccs="docker container inspect --format '{{.State.Status}}'"
 alias doci="docker image"
 alias docc="docker container"
 
+alias ddrop="dragon-drop"
+
 
 #-----------------------
 # Navigations
@@ -45,3 +47,7 @@ alias rm="rm -rv"
 #alias paci="sudo pacman -S"
 #alias pacu="sudo pacman -Syu"
 #alias pacr="sudo pacman -Rcns"
+
+
+# temp
+alias mx="clang++ -o xptrf -lxcb -lxcb-image -g -Wall"
