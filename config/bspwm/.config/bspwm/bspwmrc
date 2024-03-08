@@ -85,6 +85,7 @@ notify-send "Rules set"
 
 xsetroot -cursor_name left_ptr &
 numlockx on &
+xrdb -merge ${HOME}/.Xresources
 
 #--------------------------------------------
 # Autostarting 
@@ -95,6 +96,7 @@ numlockx on &
 dex -a -s /etc/xdg/autostart/:~/.config/autostart/  &
 run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 # Initiate policy-kit 
 run picom -b --experimental-backends
+#run compfy -b
 run nm-applet --indicator
 run dunst
 run clipmenud
