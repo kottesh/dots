@@ -6,6 +6,8 @@
 #|/__\|/__\|/__\|/__\|/__\|
 #
 
+set -x 
+
 config() { bspc config "$@" ; }
 rule() { bspc rule -a "$@" ; }
 run() { pgrep -x "$1" > /dev/null || "$@" & }
@@ -70,13 +72,15 @@ rule Screenkey state=floating center=on manage=on
 rule Protonvpn state=floating center=on
 rule Nitrogen state=floating center=on
 rule Gpick state=floating center=on manage=on
-rule gnome-calculator state=floating focus=on center=on
 rule Yad state=floating
 rule File-roller state=floating manage=on
 rule firefox:Places:Library state=floating center=on
 rule discord focus=off desktop=^3
 rule Zathura state=tiled
-rule smile state=floating manage=on
+
+# gnome apps
+rule gnome-calculator border=off state=floating focus=on center=on
+rule smile state=floating manage=on border=off
 
 notify-send "Rules set"
 
@@ -85,7 +89,7 @@ notify-send "Rules set"
 
 xsetroot -cursor_name left_ptr &
 numlockx on &
-xrdb -merge ${HOME}/.Xresources
+xrdb -merge ${HOME}/.Xresources &
 
 #--------------------------------------------
 # Autostarting 

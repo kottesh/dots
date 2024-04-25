@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+if [[ $(dunstctl is-paused) == true ]]
+then
+    polybar-msg action "#dunst.hook.0"
+    dunstctl set-paused false 
+else
+    polybar-msg action "#dunst.hook.1"
+    dunstctl set-paused true
+fi
+

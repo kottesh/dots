@@ -21,7 +21,7 @@ function y() {
         return 1
     fi
     
-    echo -n "$content" | xsel --clipboard --input
+    echo -En "$content" | xsel --clipboard --input
     notify-send "Copied!"
 }
 
