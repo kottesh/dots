@@ -1,11 +1,45 @@
 #!/usr/bin/env bash
 
-if [[ $(dunstctl is-paused) == true ]]
+set -eu
+
+
+set_icon() {
+    if [[ $(dunstctl is-paused) == true ]]
+    then
+        echo ""
+    else
+        echo ""
+    fi
+}
+
+toggle() {
+    if [[ $(dunstctl is-paused) == true ]]
+    then
+        dunstctl set-paused false 
+        echo ""
+    else
+        dunstctl set-paused true
+        echo ""
+    fi
+}
+
+if [ $# -eq 0 ]
 then
-    polybar-msg action "#dunst.hook.0"
-    dunstctl set-paused false 
-else
-    polybar-msg action "#dunst.hook.1"
-    dunstctl set-paused true
+    echo "USAGE: $0 <s|t>"
 fi
+
+
+while getopts ":st" args; do
+    case "${args}" in
+        s)
+            set_icon
+            ;;
+        t)
+            toggle
+            ;;
+        *)
+            ;;
+    esac
+done
+shift $((OPTIND-1))
 
