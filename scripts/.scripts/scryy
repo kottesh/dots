@@ -19,5 +19,7 @@ fi
 
 maim -u -o -g ${cords} ${file}.png
 addshadow $file 
-xclip -selection clipboard -t image/png -i ${file}-XD.png
+dragon-drop -x ${file}-XD.png
+#xclip -selection clipboard -t image/png -i ${file}-XD.png
+#xclip -selection clipboard -t image/png -i ${file}.png
 notify-send "screen yanked!"

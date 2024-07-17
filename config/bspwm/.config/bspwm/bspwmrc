@@ -34,8 +34,8 @@ config remove_unplugged_monitors true
 #--------------------------------------------
 # Window configs
 
-config window_gap                12
-config border_width              2 
+config window_gap                6 
+config border_width              1 
 config ignore_ewmh_focus         false 
 
 #----------------
@@ -75,12 +75,14 @@ rule Gpick state=floating center=on manage=on
 rule Yad state=floating
 rule File-roller state=floating manage=on
 rule firefox:Places:Library state=floating center=on
-rule discord focus=off desktop=^3
+rule discord desktop=^4 --follow
 rule Zathura state=tiled
 
 # gnome apps
 rule gnome-calculator border=off state=floating focus=on center=on
 rule smile state=floating manage=on border=off
+
+rule Dragon-drop state=floating sticky=on
 
 notify-send "Rules set"
 

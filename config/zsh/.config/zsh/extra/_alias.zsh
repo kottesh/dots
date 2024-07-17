@@ -28,6 +28,7 @@ alias ddrop="dragon-drop"
 # Navigations
 
 alias dots="cd $HOME/.dots"
+alias trd="cd ~/worktree/uni/3rd\ year/sem5"
 
 
 #-----------------------
@@ -44,10 +45,3 @@ alias cp="cp -rv"
 alias mv="mv -v"
 alias rm="rm -rv"
 
-#alias paci="sudo pacman -S"
-#alias pacu="sudo pacman -Syu"
-#alias pacr="sudo pacman -Rcns"
-
-
-# temp
-alias mx="clang++ -o xptrf -lxcb -lxcb-image -g -Wall"

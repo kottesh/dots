@@ -41,5 +41,4 @@ while getopts ":st" args; do
             ;;
     esac
 done
-shift $((OPTIND-1))
 

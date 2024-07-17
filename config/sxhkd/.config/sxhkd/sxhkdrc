@@ -10,9 +10,14 @@ super + Escape
 super + shift + Return
 	kitty
 
+# chromium 
+# alt + Return  
+# 	tdrop -am -w 1248 -h 457 -x 342 -y 583 -n 1 chromium; 
+
 # scratchpad center
 super + Return
-	tdrop -am -w 1620 -h 820 -x 143 -y 76 -n 1 kitty
+	tdrop -am -w 1888 -h 864 -x 14 -y 64 -n 1 kitty
+	#tdrop -am -w 1620 -h 820 -x 143 -y 76 -n 1 kitty
 	#tdrop -am -w 1892 -h 984 -x 14 -y 48 -n 1 kitty
 # scratchpad right
 super + apostrophe
@@ -52,7 +57,7 @@ super + n
 	thunar
 
 super + F1
-    betterlockscreen -l dim
+    betterlockscreen --lock blur 
 
 alt + r
 	$HOME/.scripts/record
