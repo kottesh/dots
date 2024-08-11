@@ -43,5 +43,6 @@ alias watch="watch -d"
 
 alias cp="cp -rv"
 alias mv="mv -v"
+alias up="uptime --pretty"
 alias rm="rm -rv"
 

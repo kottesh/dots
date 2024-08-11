@@ -67,6 +67,3 @@ RPROMPT=\$vcs_info_msg_0_
 zstyle ':vcs_info:git:*' formats '%F{yellow}(%b)%r%f'
 zstyle ':vcs_info:*' enable git
 
-
-echo "Everything will be okay in the end. If it's not okay, it's not the end. - John Lennon."
-
