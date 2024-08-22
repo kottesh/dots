@@ -35,7 +35,7 @@ config remove_unplugged_monitors true
 # Window configs
 
 config window_gap                6 
-config border_width              1 
+config border_width              3 
 config ignore_ewmh_focus         false 
 
 #----------------
@@ -43,7 +43,7 @@ config ignore_ewmh_focus         false
 config split_ratio               0.50
 
 # Monocle Layout (FULLSCREEN)
-config borderless_monocle        true
+config borderless_monocle        false 
 config gapless_monocle           true
 config single_monocle            false
 

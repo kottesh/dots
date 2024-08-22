@@ -10,9 +10,9 @@ super + Escape
 super + shift + Return
 	kitty
 
-# chromium 
-# alt + Return  
-# 	tdrop -am -w 1248 -h 457 -x 342 -y 583 -n 1 chromium; 
+# chromium
+alt + Return  
+	tdrop -am -w 1515 -h 710 -x 205 -y 352 -n 1 chromium; 
 
 # scratchpad center
 super + Return

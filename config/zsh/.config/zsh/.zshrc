@@ -55,7 +55,7 @@ zstyle ':fzf-tab:*' switch-group ',' '.'
 
 # PS1
 
-PROMPT="%F{cyan}%f%F{cyan}%~%f%F{green}%f"$'\n'"%F{blue}λ %f "
+PROMPT="%F{cyan}%f%F{cyan}%~%f%F{green}%f"$'\n'"%F{blue}𝑓 %f "
 
 # RPROMPT
 
@@ -67,3 +67,5 @@ RPROMPT=\$vcs_info_msg_0_
 zstyle ':vcs_info:git:*' formats '%F{yellow}(%b)%r%f'
 zstyle ':vcs_info:*' enable git
 
+
+echo "nothing changes, if nothing changes"
