@@ -101,7 +101,7 @@ xrdb -merge ${HOME}/.Xresources &
 ~/.fehbg &
 dex -a -s /etc/xdg/autostart/:~/.config/autostart/  &
 run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 # Initiate policy-kit 
-run picom -b --experimental-backends
+run picom
 #run compfy -b
 run nm-applet --indicator
 run dunst
