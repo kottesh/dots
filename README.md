@@ -9,7 +9,7 @@
 -  Hotkey Daemon      : [SXHKD](https://github.com/baskerville/sxhkd)
 -  Bar                : [Polybar](https://github.com/polybar/polybar)
 -  Notification Daemon: [Dunst](https://github.com/dunst-project/dunst)
--  Compositor         : [Picom](https://github.com/jonaburg/picom) (jonaburg fork)
+-  Compositor         : [Picom](https://github.com/yshui/picom)
 -  Terminal Emulator  : [Kitty](https://github.com/kovidgoyal/kitty)
 -  Shell              : [zsh](https://www.zsh.org)
 -  Display Manager    : [lightdm](https://github.com/canonical/lightdm)
@@ -19,7 +19,7 @@
 
 ## Stowing 
 
-I use stow for maintaing the symlinks, which will automatically link all the config to their corresponding locations.   
+I use `stow` for maintaining the symlinks, which will automatically link all the config to their corresponding locations.   
 Find more info on stow [here](https://www.gnu.org/software/stow/manual/stow.pdf)
 
 ```sh
