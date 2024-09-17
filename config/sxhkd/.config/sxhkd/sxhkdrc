@@ -3,8 +3,9 @@
 ##############################################################
 
 # make sxhkd reload its configuration files
-super + Escape
-	pkill -USR1 -x sxhkd; notify-send "SXHKD" "Reloaded config."
+super + escape
+    killall sxhkd && sxhkd &
+	#pkill -USR1 -x sxhkd; notify-send "SXHKD" "Reloaded config."
 
 # kitty
 super + shift + Return
@@ -12,20 +13,20 @@ super + shift + Return
 
 # chromium
 alt + Return  
-	tdrop -am -w 1515 -h 710 -x 205 -y 352 -n 1 chromium; 
+	tdrop -am -w 1514 -h 710 -x 205 -y 352 -n 1 chromium; 
 
 # scratchpad center
 super + Return
-	tdrop -am -w 1888 -h 864 -x 14 -y 64 -n 1 kitty
+	tdrop -am -w 1890 -h 870 -x 14 -y 10 -n 1 kitty
 	#tdrop -am -w 1620 -h 820 -x 143 -y 76 -n 1 kitty
 	#tdrop -am -w 1892 -h 984 -x 14 -y 48 -n 1 kitty
 # scratchpad right
 super + apostrophe
-	tdrop -am -w 942 -h 1022 -x 966 -y 12 -n 1 kitty
+	tdrop -am -w 942 -h 1018 -x 966 -y 29 -n 1 kitty
 
 # scratchpad left
 super + semicolon
-	tdrop -am -w 942 -h 1022 -x 12 -y 12 -n 1 kitty
+	tdrop -am -w 942 -h 1018 -x 9 -y 29 -n 1 kitty
 
 # scratchpad bottom
 super + slash
@@ -51,7 +52,7 @@ super + shift + Print
 
 # shortcuts
 super + w
-	 firefox
+	 zen-browser 
 
 super + n
 	thunar
@@ -223,7 +224,7 @@ XF86AudioMute
 #-------------------------------------------------------------
 
 XF86Calculator
-	galculator
+	gnome-calculator
 
 XF86Explorer
 	thunar

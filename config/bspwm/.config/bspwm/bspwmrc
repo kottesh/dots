@@ -35,7 +35,7 @@ config remove_unplugged_monitors true
 # Window configs
 
 config window_gap                6 
-config border_width              3 
+config border_width              0 
 config ignore_ewmh_focus         false 
 
 #----------------

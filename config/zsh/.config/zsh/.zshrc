@@ -34,6 +34,8 @@ source ${HOME}/.config/zsh/extra/_funcs.zsh
 source ${HOME}/.config/zsh/extra/_keybinds.zsh
 source ${HOME}/.config/zsh/.zprofile
 
+#source /usr/share/nvm/init-nvm.sh
+
 #-----------------
 # fzf-tab
 # ----------------

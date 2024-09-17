@@ -13,9 +13,11 @@ case $option in
             notify-send "Selection Cancelled!"
             exit 1
         fi
+        sleep 0.5
         maim -g $coords -u ~/Pictures/Screenshots/$(date +"%Y%m%d-%H%M%S").png
     ;;
     screen)
+        sleep 0.5
         maim ~/Pictures/Screenshots/$(date +"%Y%m%d-%H%M%S").png
     ;;
     *) ;;
