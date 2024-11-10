@@ -21,7 +21,7 @@ alias doccs="docker container inspect --format '{{.State.Status}}'"
 alias doci="docker image"
 alias docc="docker container"
 
-alias ddrop="dragon-drop"
+alias drop="dragon-drop"
 
 
 #-----------------------

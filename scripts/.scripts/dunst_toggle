@@ -6,9 +6,9 @@ set -eu
 set_icon() {
     if [[ $(dunstctl is-paused) == true ]]
     then
-        echo ""
+        echo ""
     else
-        echo ""
+        echo ""
     fi
 }
 
@@ -16,10 +16,10 @@ toggle() {
     if [[ $(dunstctl is-paused) == true ]]
     then
         dunstctl set-paused false 
-        echo ""
+        echo ""
     else
         dunstctl set-paused true
-        echo ""
+        echo ""
     fi
 }
 

@@ -5,10 +5,10 @@ if [ ! -e /tmp/pbtg ]; then
     polybar-msg cmd hide 
     bspc config top_padding 0
     bspc config bottom_padding 0
-    bspc config top_monocle_padding 14
-    bspc config bottom_monocle_padding 14
-    bspc config left_monocle_padding 14
-    bspc config right_monocle_padding 14
+    bspc config top_monocle_padding 8
+    bspc config bottom_monocle_padding 8
+    bspc config left_monocle_padding 8
+    bspc config right_monocle_padding 8 
 else
     rm /tmp/pbtg
     polybar-msg cmd show 

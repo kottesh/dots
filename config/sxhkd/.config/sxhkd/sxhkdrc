@@ -17,16 +17,15 @@ alt + Return
 
 # scratchpad center
 super + Return
-	tdrop -am -w 1890 -h 870 -x 14 -y 10 -n 1 kitty
-	#tdrop -am -w 1620 -h 820 -x 143 -y 76 -n 1 kitty
-	#tdrop -am -w 1892 -h 984 -x 14 -y 48 -n 1 kitty
+	tdrop -am -w 1800 -h 700 -x 60 -y 70 -n 1 kitty
+
 # scratchpad right
 super + apostrophe
-	tdrop -am -w 942 -h 1018 -x 966 -y 29 -n 1 kitty
+	tdrop -am -w 1300 -h 750 -x 600 -y 140 -n 1 kitty
 
 # scratchpad left
 super + semicolon
-	tdrop -am -w 942 -h 1018 -x 9 -y 29 -n 1 kitty
+	tdrop -am -w 1300 -h 750 -x 20 -y 140 -n 1 kitty
 
 # scratchpad bottom
 super + slash
@@ -38,7 +37,7 @@ super + backslash
 
 # app launcher (dmenu)
 super + @space
-	dmenu_run -l 4 -b
+    [[ -n "$(pgrep dmenu)" ]] &&  killall dmenu || dmenu_run -wm 
 
 # power-menu
 super + shift + e
@@ -66,9 +65,9 @@ alt + r
 super + e 
 	 smile &
 
-#clipmenu
+#clipman
 super + v
-	clipmenu &
+    xfce4-popup-clipman
 
 # polybar toggle
 super + alt + t
