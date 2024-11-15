@@ -69,7 +69,6 @@ notify-send "Configs set"
 
 rule Pavucontrol state=floating center=on
 rule dmenu state=floating
-rule Screenkey state=floating center=on manage=on
 rule Protonvpn state=floating center=on
 rule Nitrogen state=floating center=on
 rule Gpick state=floating center=on manage=on
