@@ -4,7 +4,6 @@
 # (c) Shree Kottes
 #
 
-
 addshadow() {
     convert "${1}.png" \( +clone -background black15 -shadow 80x40+5+30 \) +swap -background transparent -layers merge +repage "${1}-XD.png" 
 }
@@ -23,3 +22,4 @@ notify-send "screen captured!"
 xclip -selection clipboard -t image/png -i ${file}-XD.png
 dragon-drop -x ${file}-XD.png
 #xclip -selection clipboard -t image/png -i ${file}.png
+

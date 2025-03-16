@@ -57,7 +57,7 @@ zstyle ':fzf-tab:*' switch-group ',' '.'
 
 # PS1
 
-PROMPT="%F{cyan}%f%F{cyan}%~%f%F{green}%f"$'\n'"%F{blue}𝑓 %f "
+PROMPT="%F{cyan}%f%F{cyan}%~%f%F{green}%f"$'\n'"%F{blue}󱐌 %f "
 
 # RPROMPT
 

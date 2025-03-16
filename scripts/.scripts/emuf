@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+wid=$1
+title=$(xtitle "$wid")
+
+[[ "$title" == 'Android Emulator -'* ]] && echo state=floating

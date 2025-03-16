@@ -1,0 +1,4 @@
+#!/bin/env bash
+
+bspc rule -a kitty -o state=floating rectangle=1012x256+549+460 center=on focus=on
+kitty -e $@

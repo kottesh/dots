@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+set -e
+
+function power() {
+    options=("󰌾 lock" "󰗽 logout" "⏻ shutdown" " reboot" "󰒲 sleep")
+    selected=$(printf "%s\n" "${options[@]}" | fzf --layout=reverse --prompt=">")
+
+    case "$selected" in
+        "${options[0]}")
+            #need to setup lock 
+        ;;
+        "${options[1]}")
+            bspc quit
+        ;;
+        "${options[2]}")
+            systemctl poweroff 
+        ;;
+        "${options[3]}")
+            systemctl reboot
+        ;;
+        "${options[4]}")
+            systemctl sleep 
+        ;;
+    esac
+}
+
+power
+

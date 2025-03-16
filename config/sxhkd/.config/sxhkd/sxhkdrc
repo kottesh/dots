@@ -3,8 +3,9 @@
 ##############################################################
 
 # make sxhkd reload its configuration files
-super + escape
-	pkill -USR1 -x sxhkd; notify-send "SXHKD" "Reloaded config."
+super + shift + r
+	pkill -USR1 -x sxhkd; \
+    notify-send "sxhkd config reloaded."
 
 # kitty
 super + shift + Return
@@ -34,35 +35,35 @@ super + slash
 super + backslash
 	tdrop -am -w 1530 -h 535 -x 184 -y 19 -n 2 kitty
 
-# app launcher (dmenu)
+# app launcher
 super + @space
     [[ -n "$(pgrep dmenu)" ]] &&  killall dmenu || dmenu_run -wm 
 
 # power-menu
 super + shift + e
-     ~/.config/rofi/powermenu.sh
+    fire powermenu
 
 super + Print
-  ~/.scripts/sstool
+    sstool
 
 super + shift + Print
-	$HOME/.scripts/scryy
+	scryy
 
 # shortcuts
 super + w
-	 zen-browser 
+	zen-browser 
 
-super + n
+super + shift + m
+    youtube-music
+
+super + e
 	thunar
 
 super + F1
-    betterlockscreen --lock blur 
+    physlock
 
-alt + r
-	$HOME/.scripts/record
-
-super + e 
-	 smile &
+super + ctrl + r
+    record
 
 #clipman
 super + v
@@ -70,7 +71,7 @@ super + v
 
 # polybar toggle
 super + alt + t
-    ~/.scripts/pbtoggle
+    pbtoggle
 
 
 ############################################################
